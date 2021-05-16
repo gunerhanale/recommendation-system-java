@@ -11,7 +11,6 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FirstRatings {
@@ -40,12 +39,13 @@ public class FirstRatings {
         for (Rater rater : raterList) {
             System.out.println("Rater Id : " + rater.getID());
             System.out.println("Number of Ratings : " + rater.numRatings());
+            System.out.println("movie ID and the rating given : " + rater.getItemsRated());
         }
         System.out.println("The size of written Rater Data: " + raterList.size());
 
     }
 
-    private static ArrayList<Movie> loadMovies(String filename) throws IOException, NumberFormatException {
+    public static ArrayList<Movie> loadMovies(String filename) throws IOException, NumberFormatException {
 
         ArrayList<Movie> list = new ArrayList<>();
 
@@ -75,7 +75,7 @@ public class FirstRatings {
         return list;
     }
 
-    private static ArrayList<Rater> loadRaters(String filename) throws IOException {
+    public static ArrayList<Rater> loadRaters(String filename) throws IOException {
 
         ArrayList<Rater> list = new ArrayList<>();
 
@@ -96,21 +96,25 @@ public class FirstRatings {
                             rater.addRating(csvRecord.get("movie_id"), Double.parseDouble(csvRecord.get("rating")));
                             existing = true;
                         }
+                        if(existing == true)
+                            break;
                     }
                     if (existing == false) {
-                        Rater newRater = new Rater(csvRecord.get("rater_id"));
-                        newRater.addRating(csvRecord.get("movie_id"), Double.parseDouble(csvRecord.get("rating")));
-                        list.add(newRater);
+                        list.add(createRater(csvRecord));
                     }
                 } else {
-                    Rater newRater = new Rater(csvRecord.get("rater_id"));
-                    newRater.addRating(csvRecord.get("movie_id"), Double.parseDouble(csvRecord.get("rating")));
-                    list.add(newRater);
+                    list.add(createRater(csvRecord));
                 }
                 existing= false;
             }
         }
         return list;
+    }
+
+    private static Rater createRater(CSVRecord csvRecord){
+        Rater newRater = new Rater(csvRecord.get("rater_id"));
+        newRater.addRating(csvRecord.get("movie_id"), Double.parseDouble(csvRecord.get("rating")));
+        return newRater;
     }
 
 

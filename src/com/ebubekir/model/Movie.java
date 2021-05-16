@@ -1,5 +1,7 @@
 package com.ebubekir.model;
 
+import org.apache.commons.csv.CSVRecord;
+
 public class Movie {
 
     private String id;

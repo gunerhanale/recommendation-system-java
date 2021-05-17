@@ -2,6 +2,7 @@ package com.ebubekir;
 
 import com.ebubekir.model.Movie;
 import com.ebubekir.model.Rater;
+import com.ebubekir.model.Rating;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,9 +15,10 @@ public class MovieRunnerAverage {
     private static final String PROD_RATER = "E:\\work\\recommendation-system-java\\src\\com\\ebubekir\\data\\ratings.csv";
 
     public static void main(String[] args) throws IOException {
-        printAverageRatings();
-        printLoadMovies();
-        printLoadRaters();
+        //printAverageRatings();
+        //printLoadMovies();
+        //printLoadRaters();
+        printRatingInformation();
     }
 
 
@@ -56,5 +58,18 @@ public class MovieRunnerAverage {
         }
         System.out.println("The size of written Rater Data: " + raterList.size());
         System.out.println("\n\n");
+    }
+
+    private static void printRatingInformation() throws IOException {
+
+        SecondRatings secondRatings = new SecondRatings(TEST_MOVIE, TEST_RATER);
+
+        ArrayList<Rating> list = secondRatings.getAverageRatings(2);
+        for(Rating rating : list){
+            System.out.println("---------------");
+            System.out.println("Movie id : " + rating.getItem());
+            System.out.println("Rating average : " + rating.getValue());
+            System.out.println("---------------\n");
+        }
     }
 }

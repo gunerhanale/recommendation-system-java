@@ -33,14 +33,20 @@ public class SecondRatings {
 
     private double getAverageByID(String id, int minimalRaters){
         double average = 0.0;
+        double sumRating = 0;
         int raters = 0;
 
         for (Rater rater : myRaters) {
-            // rater.getRating(id);
+            for (String movieId : rater.getItemsRated()) {
+                if(movieId.equals(id)){
+                    sumRating += rater.getRating(id);
+                    raters += 1;
+                }
+            }
         }
 
         if(raters > minimalRaters){
-            average = 1.0;
+            average = sumRating / raters;
          }
 
         return average;
@@ -48,7 +54,7 @@ public class SecondRatings {
 
     public ArrayList<Rating> getAverageRatings(int minimalRaters){
 
-        ArrayList<Rating> ratingInfo = new ArrayList<Rating>();
+        ArrayList<Rating> ratingInfo = new ArrayList<>();
 
         for (Movie movie : myMovies ) {
             double averageRating = getAverageByID(movie.getId(), minimalRaters);

@@ -15,35 +15,6 @@ import java.util.List;
 
 public class FirstRatings {
 
-    private static final String TEST_MOVIE = "E:\\work\\recommendation-system-java\\src\\com\\ebubekir\\data\\ratedmovies_short.csv";
-    private static final String PROD_MOVIE = "E:\\work\\recommendation-system-java\\src\\com\\ebubekir\\data\\ratedmoviesfull.csv";
-    private static final String TEST_RATER = "E:\\work\\recommendation-system-java\\src\\com\\ebubekir\\data\\ratings_short.csv";
-    private static final String PROD_RATER = "E:\\work\\recommendation-system-java\\src\\com\\ebubekir\\data\\ratings.csv";
-
-    public static void main(String[] args) throws IOException {
-
-        ArrayList<Movie> movieList = loadMovies(TEST_MOVIE);
-        for (Movie movie : movieList) {
-            System.out.println("---------------");
-            System.out.println();
-            System.out.println("Id : " + movie.getId());
-            System.out.println("Title : " + movie.getTitle());
-            System.out.println("Year : " + movie.getYear());
-            System.out.println("Country : " + movie.getCountry());
-            System.out.println("---------------\n\n");
-        }
-        System.out.println("The size of written Movie Data: " + movieList.size());
-        System.out.println("---------------\n\n");
-
-        ArrayList<Rater> raterList = loadRaters(TEST_RATER);
-        for (Rater rater : raterList) {
-            System.out.println("Rater Id : " + rater.getID());
-            System.out.println("Number of Ratings : " + rater.numRatings());
-            System.out.println("movie ID and the rating given : " + rater.getItemsRated());
-        }
-        System.out.println("The size of written Rater Data: " + raterList.size());
-
-    }
 
     public static ArrayList<Movie> loadMovies(String filename) throws IOException, NumberFormatException {
 

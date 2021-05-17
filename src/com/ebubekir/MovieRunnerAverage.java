@@ -15,19 +15,27 @@ public class MovieRunnerAverage {
     private static final String PROD_RATER = "E:\\work\\recommendation-system-java\\src\\com\\ebubekir\\data\\ratings.csv";
 
     public static void main(String[] args) throws IOException {
-        //printAverageRatings();
+        printAverageRatings(3);
         //printLoadMovies();
         //printLoadRaters();
-        printRatingInformation();
     }
 
 
-    private static void printAverageRatings() throws IOException {
+    private static void printAverageRatings(int minRaters) throws IOException {
 
-        SecondRatings secondRatings = new SecondRatings(PROD_MOVIE, PROD_RATER);
+        SecondRatings secondRatings = new SecondRatings(TEST_MOVIE, TEST_RATER);
 
-        System.out.println("Number of movies : " + secondRatings.getMovieSize());
-        System.out.println("Number of raters : " + secondRatings.getRaterSize());
+//        System.out.println("---------------");
+//        System.out.println("Number of movies : " + secondRatings.getMovieSize());
+//        System.out.println("Number of raters : " + secondRatings.getRaterSize());
+//        System.out.println("---------------\n");
+
+        ArrayList<Rating> list = secondRatings.getAverageRatings(minRaters);
+        for(Rating rating : list){
+            if(rating.getValue() > 0){
+                System.out.println(rating.getValue() + " " + secondRatings.getTitle(rating.getItem()));
+            }
+        }
     }
 
     private static void printLoadMovies() throws IOException {
@@ -60,16 +68,4 @@ public class MovieRunnerAverage {
         System.out.println("\n\n");
     }
 
-    private static void printRatingInformation() throws IOException {
-
-        SecondRatings secondRatings = new SecondRatings(TEST_MOVIE, TEST_RATER);
-
-        ArrayList<Rating> list = secondRatings.getAverageRatings(2);
-        for(Rating rating : list){
-            System.out.println("---------------");
-            System.out.println("Movie id : " + rating.getItem());
-            System.out.println("Rating average : " + rating.getValue());
-            System.out.println("---------------\n");
-        }
-    }
 }

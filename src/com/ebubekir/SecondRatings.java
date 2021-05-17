@@ -64,4 +64,13 @@ public class SecondRatings {
         return ratingInfo;
     }
 
+    public String getTitle(String id){
+        for (Movie movie: myMovies ) {
+            if(movie.getId().equals(id)){
+                return movie.getTitle();
+            }
+        }
+        return "The ID was not found.";
+    }
+
 }

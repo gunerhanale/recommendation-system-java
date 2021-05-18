@@ -6,6 +6,9 @@ import com.ebubekir.model.Rating;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MovieRunnerAverage {
 
@@ -23,7 +26,7 @@ public class MovieRunnerAverage {
 
     private static void printAverageRatings(int minRaters) throws IOException {
 
-        SecondRatings secondRatings = new SecondRatings(TEST_MOVIE, TEST_RATER);
+        SecondRatings secondRatings = new SecondRatings(PROD_MOVIE, PROD_RATER);
 
 //        System.out.println("---------------");
 //        System.out.println("Number of movies : " + secondRatings.getMovieSize());
@@ -31,11 +34,26 @@ public class MovieRunnerAverage {
 //        System.out.println("---------------\n");
 
         ArrayList<Rating> list = secondRatings.getAverageRatings(minRaters);
+
+        Collections.sort(list, new Comparator<Rating>() {
+            @Override
+            public int compare(Rating c1, Rating c2) {
+                return Double.compare(c1.getValue(), c2.getValue());
+            }
+        });
+
         for(Rating rating : list){
             if(rating.getValue() > 0){
-                System.out.println(rating.getValue() + " " + secondRatings.getTitle(rating.getItem()));
+                    System.out.println(rating.getValue() + " " + secondRatings.getTitle(rating.getItem()));
             }
         }
+    }
+
+    private static void getAverageRatingOneMovie() throws IOException {
+        SecondRatings secondRatings = new SecondRatings(TEST_MOVIE, TEST_RATER);
+
+        //I will do it tomorrow, but first I will write getID method, then I can do here later.
+
     }
 
     private static void printLoadMovies() throws IOException {

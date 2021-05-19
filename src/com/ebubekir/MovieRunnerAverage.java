@@ -17,9 +17,12 @@ public class MovieRunnerAverage {
     private static final String PROD_RATER = "E:\\work\\recommendation-system-java\\src\\com\\ebubekir\\data\\ratings.csv";
 
     public static void main(String[] args) throws IOException {
+
+        getAverageRatingOneMovie();
         printAverageRatings(3);
         //printLoadMovies();
         //printLoadRaters();
+
     }
 
 
@@ -27,10 +30,10 @@ public class MovieRunnerAverage {
 
         SecondRatings secondRatings = new SecondRatings(TEST_MOVIE, TEST_RATER);
 
-//        System.out.println("---------------");
+//        System.out.println("-------TOTAL--------");
 //        System.out.println("Number of movies : " + secondRatings.getMovieSize());
 //        System.out.println("Number of raters : " + secondRatings.getRaterSize());
-//        System.out.println("---------------\n");
+//        System.out.println("--------END---------\n");
 
         ArrayList<Rating> list = secondRatings.getAverageRatings(minRaters);
 
@@ -51,7 +54,16 @@ public class MovieRunnerAverage {
     private static void getAverageRatingOneMovie() throws IOException {
         SecondRatings secondRatings = new SecondRatings(TEST_MOVIE, TEST_RATER);
 
-        //I will do it tomorrow, but first I will write getID method, then I can do here later.
+        String title = "The Godfather";
+        String movieId = secondRatings.getID(title);
+
+        ArrayList<Rating> list = secondRatings.getAverageRatings(0);
+
+        for (Rating rating: list ) {
+            if(rating.getItem().equals(movieId)){
+                System.out.println("The average of " + title + " : " + rating.getValue());
+            }
+        }
 
     }
 

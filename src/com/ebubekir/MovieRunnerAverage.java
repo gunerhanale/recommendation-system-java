@@ -6,7 +6,6 @@ import com.ebubekir.model.Rating;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -26,7 +25,7 @@ public class MovieRunnerAverage {
 
     private static void printAverageRatings(int minRaters) throws IOException {
 
-        SecondRatings secondRatings = new SecondRatings(PROD_MOVIE, PROD_RATER);
+        SecondRatings secondRatings = new SecondRatings(TEST_MOVIE, TEST_RATER);
 
 //        System.out.println("---------------");
 //        System.out.println("Number of movies : " + secondRatings.getMovieSize());

@@ -19,8 +19,8 @@ public class MovieRunnerAverage {
     public static void main(String[] args) throws IOException {
 
         getAverageRatingOneMovie();
-        printAverageRatings(3);
-        //printLoadMovies();
+        //printAverageRatings(3);
+        printLoadMovies();
         //printLoadRaters();
 
     }
@@ -30,10 +30,10 @@ public class MovieRunnerAverage {
 
         SecondRatings secondRatings = new SecondRatings(TEST_MOVIE, TEST_RATER);
 
-//        System.out.println("-------TOTAL--------");
-//        System.out.println("Number of movies : " + secondRatings.getMovieSize());
-//        System.out.println("Number of raters : " + secondRatings.getRaterSize());
-//        System.out.println("--------END---------\n");
+        System.out.println("-------TOTAL--------");
+        System.out.println("Number of movies : " + secondRatings.getMovieSize());
+        System.out.println("Number of raters : " + secondRatings.getRaterSize());
+        System.out.println("--------END---------\n");
 
         ArrayList<Rating> list = secondRatings.getAverageRatings(minRaters);
 
@@ -52,7 +52,7 @@ public class MovieRunnerAverage {
     }
 
     private static void getAverageRatingOneMovie() throws IOException {
-        SecondRatings secondRatings = new SecondRatings(TEST_MOVIE, TEST_RATER);
+        SecondRatings secondRatings = new SecondRatings(PROD_MOVIE, PROD_RATER);
 
         String title = "The Godfather";
         String movieId = secondRatings.getID(title);
@@ -69,7 +69,7 @@ public class MovieRunnerAverage {
 
     private static void printLoadMovies() throws IOException {
 
-        ArrayList<Movie> movieList = FirstRatings.loadMovies(TEST_MOVIE);
+        ArrayList<Movie> movieList = FirstRatings.loadMovies(PROD_MOVIE);
         for (Movie movie : movieList) {
             System.out.println("---------------");
             System.out.println();
@@ -85,7 +85,7 @@ public class MovieRunnerAverage {
 
     private static void printLoadRaters() throws IOException {
 
-        ArrayList<Rater> raterList = FirstRatings.loadRaters(TEST_RATER);
+        ArrayList<Rater> raterList = FirstRatings.loadRaters(PROD_RATER);
         for (Rater rater : raterList) {
             System.out.println("---------------");
             System.out.println("Rater Id : " + rater.getID());
